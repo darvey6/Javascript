@@ -1,8 +1,52 @@
 <html>
-<head></head>
+<head>
+<title>Canvas</title>
+<style>
+  canvas {border: 1px solid black;}
+</style>
+</head>
   <body>
-    hello
-    <script src="script.js">
+    <h1> Canvas </h1>
+    <canvas width = "200" height="200" id="myCanvas"></canvas>
+    <script>
+
+        //dimensions of the rectangle
+        var x = 10;
+        var y = 10;
+        var w = 20;
+        var h = 30;
+
+        //speed at which it moves
+        var speed = 2;
+
+        //grab the canvas and context
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        //update the rectangle position
+        var update = function() {
+          x = x +  speed;
+        };
+
+        //show it on the screen
+        var draw = function() {
+          ctx.clearRect(0,0,500,300);
+          ctx.fillStyle = "rgb(200, 0, 100)";
+          ctx.fillRect(x, y, w, h);
+        };
+
+        //gets executed multiple times per second
+        var step = function() {
+
+          update();
+          draw();
+
+          window.requestAnimationFrame(step);
+        };
+
+        //initial kick
+        step();
+
     </script>
   </body>
 </html>
